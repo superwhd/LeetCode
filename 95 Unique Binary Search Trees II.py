@@ -29,8 +29,8 @@ class  Solution(object):
                 for  left in  lefts:
                     for  right in  rights:
                         root =  TreeNode(i)
-                        root.left =  copyTree(left)
-                        root.right =  copyTree(right)
+                        root.left =  left
+                        root.right =  right
                         ans.append(root)
             return  ans
         
