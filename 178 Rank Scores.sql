@@ -1,4 +1,4 @@
-select  Score, 
+select  S1.Score, 
        (
         select  count (distinct  Score) +  1
         from  Scores as  S2 
