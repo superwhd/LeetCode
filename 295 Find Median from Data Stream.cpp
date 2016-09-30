@@ -3,18 +3,12 @@ public:
 
     // Adds a number into the data structure.
     void addNum(int num) {
-        if (minHeap.empty() || num >= minHeap.top()) {
-            minHeap.push(num);
-        } else {
-            maxHeap.push(num);
-        }
+        maxHeap.push(num);
+        minHeap.push(maxHeap.top());
+        maxHeap.pop();
         if (minHeap.size() > maxHeap.size() + 1) {
             maxHeap.push(minHeap.top());
             minHeap.pop();
-        }
-        if (maxHeap.size() > minHeap.size()) {
-            minHeap.push(maxHeap.top());
-            maxHeap.pop();
         }
     }
 
