@@ -5,9 +5,6 @@ public:
         for (int i = 1; i < sum.size(); i++) {
             sum[i] += sum[i - 1];
         }
-        for (int i = 0; i < sum.size(); i++) {
-            cout << sum[i] << endl;
-        }
     }
 
     int sumRange(int i, int j) {
