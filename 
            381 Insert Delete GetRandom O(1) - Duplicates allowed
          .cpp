@@ -23,33 +23,14 @@ public:
             return false;
         }
         int valPos = *(pos[val].begin());
-
-        if (top > 1) {                
-            swap(q[valPos], q[top - 1]);
-            if (val != q[valPos]) {
-                pos[val].erase(valPos);
-                pos[q[valPos]].erase(top - 1);
-                pos[q[valPos]].insert(valPos);
-            } else {
-                pos[val].erase(top - 1);
-            }
-        } else {
-            pos[val].erase(valPos);
-        }
+        swap(q[valPos], q[top - 1]);
+        pos[val].erase(valPos);        
+        pos[q[valPos]].insert(valPos);
+        pos[q[valPos]].erase(top - 1);
         top--;
         if (pos[val].empty()) {
             pos.erase(val);
         }
-        // for (auto &d : pos) {
-        //     for (auto &p : d.second) {
-        //         cout << d.first << ' ' << p << endl;
-        //     }
-        // }
-        // cout << endl;
-        // for (int i = 0; i < top; i++) {
-        //     cout << q[i] << ' ';
-        // }
-        // cout << endl;
         return true;
     }
     
@@ -60,7 +41,7 @@ public:
 private:
     vector<int> q;
     int top;
-    unordered_map<int, unordered_set<int>> pos;
+    unordered_map<int, unordered_multiset<int>> pos;
 };
 
 /**
