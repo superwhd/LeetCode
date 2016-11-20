@@ -39,7 +39,7 @@ public:
 private:
     vector<int> q;
     int top;
-    map<int, int> pos;
+    unordered_map<int, int> pos;
 };
 
 /**
