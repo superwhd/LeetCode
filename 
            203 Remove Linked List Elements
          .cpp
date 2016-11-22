@@ -14,7 +14,6 @@ public:
         for (auto p = dumbHead; p; p = p->next) {
             while (p->next && p->next->val == val) {
                 auto q = p->next;
-                // delete q;
                 p->next = p->next->next;
             }
         }
