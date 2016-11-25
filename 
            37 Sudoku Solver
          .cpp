@@ -98,8 +98,6 @@ public:
             }
         }
         auto delCol = [&] (int col) {
-            heads[col]->l->r = heads[col]->r;
-            heads[col]->r->l = heads[col]->l;
             for (auto i = heads[col]->d; i != heads[col]; i = i->d) {
                 for (auto j = i->r; j != i; j = j->r) {
                     j->u->d = j->d;
@@ -107,10 +105,12 @@ public:
                     cnt[j->col]--;
                 }
             }
+            heads[col]->l->r = heads[col]->r;
+            heads[col]->r->l = heads[col]->l;
         };
         auto recCol = [&] (int col) {
-            for (auto i = heads[col]->u; i != heads[col]; i = i->u) {
-                for (auto j = i->l; j != i; j = j->l) {
+            for (auto i = heads[col]->d; i != heads[col]; i = i->d) {
+                for (auto j = i->r; j != i; j = j->r) {
                     j->u->d = j;
                     j->d->u = j;
                     cnt[j->col]++;
@@ -143,7 +143,7 @@ public:
                 if (dfs()) {
                     return true;
                 }
-                for (auto j = i->l; j != i; j = j->l) {
+                for (auto j = i->r; j != i; j = j->r) {
                     recCol(j->col);
                 }
             }
